@@ -26,7 +26,7 @@ const AllArticles = () => {
     return (
         <>
         <h2>all articles</h2>
-        <ul>
+        <ul className="all-articles-page">
         {articles.map((article) => {
             return (
                  <div key={article.article_id}>

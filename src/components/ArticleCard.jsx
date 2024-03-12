@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 
 const ArticleCard = (props) => {
     const article = props.article
-    console.log(article)
     return (
         <>
         <div className="article-card-wrapper">
