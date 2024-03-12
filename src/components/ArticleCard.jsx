@@ -7,7 +7,7 @@ const ArticleCard = (props) => {
         <div className="article-card-wrapper">
             <Link to={`/articles/${article.article_id}`} className="article-card-link">
             <div className="article-card-image-and-title">
-                <img className="article-card-image" src={article.article_img_url} alt="a thumbnail image representing this article" />
+                <img className="article-card-image" src={article.article_img_url} alt={"a thumbnail image representing the article titled" + ` ${article.title}`} />
                 <h2 className="article-card-title">{article.title}</h2>
             </div >
             </Link>
