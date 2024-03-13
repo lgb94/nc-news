@@ -15,7 +15,7 @@ const ArticleCommentsSection = (props) => {
             {currentComments.map((comment) => {
                 return (
                     <div key={comment.comment_id}className="comment-card">
-                        <CommentCard comment={comment}/>
+                        <CommentCard comment={comment} />
                     </div>
                     )
                 })
