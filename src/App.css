@@ -94,3 +94,22 @@ html {
     padding-inline-end: 5px;
 }
 
+.post-comment-form {
+    background-color: cornflowerblue;
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+    padding-bottom: 20px;
+    margin: 10px;
+    border-style: solid;
+}
+
+.post-comment-input-field {
+    width: 50%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.post-comment-submit-button {
+    padding: 8px;
+}
