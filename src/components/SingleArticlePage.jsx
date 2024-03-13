@@ -5,6 +5,7 @@ import { getArticleById } from "../utils/GET-articles"
 import { getCommentsbyId } from "../utils/GET-comments"
 import ArticleCommentsSection from "./Article-comments"
 import { dateFormatter } from "../utils/date-format-func"
+import ArticleVotes from "./Article-votes"
 
 const SingleArticlePage = () => {
 
@@ -14,6 +15,7 @@ const SingleArticlePage = () => {
     const [currentArticleComments, setCurrentArticleComments] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
+    const [articleVotes, setArticleVotes] = useState(0)
 
     useEffect(() => {
         setIsLoading(true)
@@ -35,7 +37,7 @@ const SingleArticlePage = () => {
             setIsError(true)
         )
     }, [currentArticleId])
-
+    
 
     let nextArticle = (currentArticleId*1) + 1
     let previousArticle = (currentArticleId*1) -1
@@ -61,15 +63,14 @@ const SingleArticlePage = () => {
     return (
         <>
         <div className="single-article-page">
-            <h2>{currentArticle.title}</h2>
+            <h1>{currentArticle.title}</h1>
+            <ArticleVotes articleVotes={articleVotes} setArticleVotes={setArticleVotes} currentArticle={currentArticle}/>
             <p>author: {currentArticle.author}</p>
             <p>topic: {currentArticle.topic}</p>
             <img className="single-article-image" src={currentArticle.article_img_url} alt={"image to match the article" + ` ${currentArticle.title}`} />
             <p>{currentArticle.body}</p>
-            
         <div className="single-article-comments">
             <ArticleCommentsSection currentArticleComments={currentArticleComments} setCurrentArticleComments={setCurrentArticleComments}/>
-
         </div>
             <p>article posted: {dateFormatter(currentArticle.created_at)}</p>
         <Link to={`/articles/${previousArticle}`}>

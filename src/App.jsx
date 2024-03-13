@@ -6,6 +6,8 @@ import Header from './components/Header'
 import NavigationBar from './components/NavigationBar'
 import AllArticles from './components/AllArticles'
 import SingleArticlePage from './components/SingleArticlePage'
+import UsersPage from './components/UsersPage'
+
 
 function App() {
 
@@ -23,6 +25,7 @@ const [loggedInUser, setLoggedInUser] = useState({
       <Routes>
         <Route path="/articles/all" element={<AllArticles />}/>
         <Route path="/articles/:article_id" element={<SingleArticlePage />}/>
+        <Route path="/login" element={<UsersPage />}/>
       </Routes>
       </LoggedInContext.Provider>
     </div>
