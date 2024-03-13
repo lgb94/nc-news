@@ -12,7 +12,6 @@ const SingleArticlePage = () => {
     const param = useParams()
     const [currentArticleId, setCurrentArticleId] = useState(param.article_id)
     const [currentArticle, setCurrentArticle] = useState({})
-    const [currentArticleComments, setCurrentArticleComments] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [articleVotes, setArticleVotes] = useState(0)
@@ -22,17 +21,10 @@ const SingleArticlePage = () => {
         setIsError(false)
         getArticleById(currentArticleId)
         .then((res) => {
-            setCurrentArticle(res.article)
-            return currentArticleId
-        })
-        .then((article_id) => {
-            return getCommentsbyId(article_id)
+            return setCurrentArticle(res.article)
         })
         .then((res) => {
-            setCurrentArticleComments(res.comments)
-        })
-        .then((res) => {
-            setIsLoading(false)
+            return setIsLoading(false)
         }).catch((err) =>
             setIsError(true)
         )
@@ -70,7 +62,7 @@ const SingleArticlePage = () => {
             <img className="single-article-image" src={currentArticle.article_img_url} alt={"image to match the article" + ` ${currentArticle.title}`} />
             <p>{currentArticle.body}</p>
         <div className="single-article-comments">
-            <ArticleCommentsSection currentArticleComments={currentArticleComments} setCurrentArticleComments={setCurrentArticleComments} currentArticleId={currentArticleId}/>
+            <ArticleCommentsSection currentArticleId={currentArticleId}/>
         </div>
             <p>article posted: {dateFormatter(currentArticle.created_at)}</p>
         <Link to={`/articles/${previousArticle}`}>

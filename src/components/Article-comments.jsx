@@ -7,8 +7,6 @@ import { getCommentsbyId } from "../utils/GET-comments"
 const ArticleCommentsSection = (props) => {
 
     const currentArticleId = props.currentArticleId
-    // const currentArticleComments = props.currentArticleComments
-    // const setCurrentArticleComments = props.setCurrentArticleComments
 
     const [currentComments, setCurrentComments] = useState({})
     const [isLoading, setIsLoading] = useState(true)
@@ -19,9 +17,9 @@ const ArticleCommentsSection = (props) => {
         setIsError(false)
         getCommentsbyId(currentArticleId)
         .then((res) => {
-            setCurrentComments(res.comments)
+           return setCurrentComments(res.comments)
         }).then((res) => {
-            setIsLoading(false)
+           return setIsLoading(false)
         })
     }, [])
 
