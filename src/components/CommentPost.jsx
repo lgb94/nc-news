@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import LoggedInContext from "../contexts/Logged-In-User-Context"
 import { postCommentOnGivenArticleId } from "../utils/POST-comment"
 import { commentValidator } from "../utils/comment-validator"
+import { deleteCommentByCommentId } from "../utils/DELETE-comment"
 
 const PostCommentField = (props) => {
     
@@ -12,16 +13,21 @@ const PostCommentField = (props) => {
     const { loggedInUser, setLoggedInUser } = useContext(LoggedInContext)
     const [newCommentAttempt, setNewCommentAttempt] = useState('')
     const [commentPosted, setCommentPosted] = useState(false)
+    const [isLoading, setIsLoading] =useState(false)
     const [isCommentInvalid, setIsCommentInvalid] = useState(false)
     const [postError, setPostError] = useState(false)
+    const [lastPostedComment, setLastPostedComment] = useState({})
+    const [commentUndone, setCommentUndone] = useState(false)
     
     const handleSubmit = (event) => {
         event.preventDefault()
+        setPostError(false)
+        setIsLoading(true)
         if (commentValidator(newCommentAttempt)){
             setIsCommentInvalid(false)
             const optimisticComment = {
                 article_id: currentArticleId,
-                comment_id: 999,
+                comment_id: 9999999999999999999,
                 author : loggedInUser.username,
                 created_at: 'Just now',
                 body : newCommentAttempt,
@@ -33,17 +39,21 @@ const PostCommentField = (props) => {
             }
             postCommentOnGivenArticleId(currentArticleId, body)
                 .then((res) => {
+                    setLastPostedComment(res.comment)
                     setCurrentComments([optimisticComment, ...currentComments])
+                    setIsLoading(false)
                     setCommentPosted(true)
                     setNewCommentAttempt('')
                 })
                 .catch((err) => {
+                    setIsLoading(false)
                     setPostError(true)
                 })
 
         }
         else if (!commentValidator(newCommentAttempt)){
             setIsCommentInvalid(true)
+            setIsLoading(false)
             setNewCommentAttempt('')
         }
         
@@ -76,9 +86,28 @@ const PostCommentField = (props) => {
                     className="post-comment-submit-button"
                     >send it
                 </button>
-                {commentPosted ? <p className="post-comment-success-text">comment posted successfully! Go again if you want!</p> : null}
+                {isLoading ? <p>an army of tiny chimps is processing your comment...</p> : null}
                 {isCommentInvalid ? <p className="post-comment-invalid-text">your comment broke the rules, try again...</p> : null}
             </form>
+                {commentPosted ? 
+                    <div className="post-comment-follow-up-message">
+                        <p className="post-comment-success-text">comment posted successfully!</p>
+                        <button onClick={((event) => {
+                            deleteCommentByCommentId(lastPostedComment.comment_id)
+                            .then((res) => {
+                                setCommentUndone(true)
+                                setCommentPosted(false)
+                                })
+                            }
+                        )}
+                        >undo?</button>    
+                    </div>
+                : null}
+                {commentUndone ? 
+                    <div className="post-comment-follow-up-message">
+                        <p>comment post undone - refresh to see change.</p>
+                    </div> 
+                : null}
         </div>
     )
 }

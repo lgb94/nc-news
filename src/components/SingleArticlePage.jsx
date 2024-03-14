@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { getArticleById } from "../utils/GET-articles"
-import { getCommentsbyId } from "../utils/GET-comments"
 import ArticleCommentsSection from "./Article-comments"
 import { dateFormatter } from "../utils/date-format-func"
 import ArticleVotes from "./Article-votes"
@@ -21,7 +20,10 @@ const SingleArticlePage = () => {
         setIsError(false)
         getArticleById(currentArticleId)
         .then((res) => {
+            if(res.article.topic === param.topic){
             return setCurrentArticle(res.article)
+            }
+            else setIsError(true)
         })
         .then((res) => {
             return setIsLoading(false)
@@ -30,15 +32,12 @@ const SingleArticlePage = () => {
         )
     }, [currentArticleId])
     
-
-    let nextArticle = (currentArticleId*1) + 1
-    let previousArticle = (currentArticleId*1) -1
     
     if(isError){
         return (
             <>
             <h2>that article doesnt exist, how did you get here?</h2>
-            <Link to={`/articles/all`}>
+            <Link to={`/articles/`}>
             <button>back to all articles</button>
             </Link>
             </>
@@ -65,16 +64,6 @@ const SingleArticlePage = () => {
             <ArticleCommentsSection currentArticleId={currentArticleId}/>
         </div>
             <p>article posted: {dateFormatter(currentArticle.created_at)}</p>
-        <Link to={`/articles/${previousArticle}`}>
-            <button onClick={(event) => {
-                setCurrentArticleId(previousArticle)
-            }}>previous article</button>
-        </Link>
-        <Link to={`/articles/${nextArticle}`}>
-            <button onClick={(event) => {
-                setCurrentArticleId(nextArticle)
-            }}>next article</button>
-        </Link>
         </div>
         
         </>

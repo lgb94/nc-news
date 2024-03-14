@@ -103,6 +103,15 @@ html {
     border-style: solid;
 }
 
+.post-comment-follow-up-message {
+    background-color: rgb(248, 204, 59);
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+}
+
 .post-comment-input-field {
     width: 50%;
     padding: 8px;
