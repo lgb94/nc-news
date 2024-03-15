@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import errorImage from "../../assets/kermit-falling-down-stairs.png"
+import LoadingSpinner from "./loading-spinner"
 
 const ErrorPage = () => {
     return (

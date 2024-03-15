@@ -6,6 +6,7 @@ import TopicsContext from "../contexts/topics-context"
 import ArticleCard from "./ArticleCard"
 import ArticleQueries from "./Article-queries"
 import capitalizer from "../utils/First-letter-capitalised"
+import LoadingSpinner from "./loading-spinner"
 
 
 const AllArticles = () => {
@@ -59,7 +60,9 @@ const AllArticles = () => {
 
     if (isLoading){
         return (
-            <h2>page loading</h2>
+            <>
+            <LoadingSpinner />
+            </>
         )
     }
     if (invalidParamError){
@@ -72,6 +75,7 @@ const AllArticles = () => {
             <h2>"An error occurred, what did you do? Give it a refresh.</h2>
         )
     }
+
     return (
         <>
         {param.topic ? <h1>{capitalizer(param.topic)} Articles</h1> : <h1>All Articles</h1>}

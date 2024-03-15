@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import LoadingSpinner from "./loading-spinner"
 
 import CommentCard from "./CommentCard"
 import PostCommentField from "./CommentPost"
@@ -25,7 +26,7 @@ const ArticleCommentsSection = (props) => {
 
     if(isLoading){
         return (
-            <h1>loading comments...</h1>
+            <LoadingSpinner />
         )
     }
 

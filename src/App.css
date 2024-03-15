@@ -1,9 +1,16 @@
+@font-face {
+    font-family: crashFont;
+    src: url(../assets/crash-a-like.ttf);
+}
+
 html {
-    background-color: rgb(132, 0, 255);
+    background-image: url(../assets/vortex\ background.png);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .app {
-    background-color: rgb(0, 255, 221);
+    background-color: rgba(0, 255, 221, 0.397);
     border-style: ridge;
     border-color: black;
     border-width: 10px;
@@ -14,23 +21,177 @@ html {
     margin-right: 3%;
 }
 
+.Header {
+    background-image: linear-gradient(to bottom right, cyan, blue, rgb(0, 2, 128), blue, cyan, green, greenyellow, green,cyan, blue,rgb(0, 2, 128), black, rgb(0, 2, 128), blue, cyan);
+    border-style: solid;
+    border-color: black;
+    border-radius: 10pt;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-family: crashFont;
+    font-size: 10vw;
+    text-shadow: 10px 1px black;
+    color: orangered;
+    margin: 0;
+    padding-left: 6%;
+    margin-bottom: 20px;
+    font-weight: 1;
+}
+
+.header-login-box {
+    background-color: rgb(3, 0, 158);
+    border-radius: 10pt;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: red;
+    width: 200px;
+}
+
+.login-button {
+    width: 100%
+}
+
+.navigation-bar {
+    list-style-type: none;
+    display:flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.774);
+    overflow: auto;
+    padding-inline-start: 0;
+}
+
+.navigation-item {
+    border-style: solid;
+    border-color: rgb(255, 230, 0);
+    font-family: crashFont;
+    font-size: 2em;
+    color: orangered;
+    text-shadow: 2px 2px black;
+    text-decoration: none;
+    width: 20%;
+    padding: 10px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.navigation-item:hover {
+    background-color: rgb(0, 0, 0);
+    border-color: orangered;
+    color: white;
+}
+
+.Homepage {
+    padding: 10px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background-color: darkgoldenrod;
+}
+
+.random-article-wrapper {
+    background-color: rgb(234, 0, 255);
+    border-style: solid;
+    padding: 10px;
+    margin-left: 2rem;
+    margin-right: 30%;
+    width: auto;
+}
+
+.random-article-card-image-and-title {
+    background-color:salmon;
+    display: flex;
+}
+
+.random-article-card-image {
+width: 50%;
+height: auto;
+}
+.random-article-card-title {
+    color: black;
+    text-align: center;
+}
+
+.random-article-card-information {
+    background-color: rgb(0, 255, 221);
+    display: flex;
+}
+
+.random-article-card-subheading {
+    padding: 10px;
+}
+.random-article-card-votes-comments-counts {
+    padding: 10px;
+}
+
+.most-recent-article-wrapper {
+    background-color: rgb(234, 0, 255);
+    border-style: solid;
+    padding: 10px;
+    margin-left: 2rem;
+    margin-left: 30%;
+    width: auto;
+}
+
+.most-recent-article-card-image-and-title {
+    background-color:salmon;
+    display: flex;
+}
+
+.most-recent-article-card-image {
+width: 50%;
+height: auto;
+}
+.most-recent-article-card-title {
+    color: black;
+    text-align: center;
+}
+
+.most-recent-article-card-information {
+    background-color: rgb(0, 255, 221);
+    display: flex;
+}
+
+.most-recent-article-card-subheading {
+    padding: 10px;
+}
+.most-recent-article-card-votes-comments-counts {
+    padding: 10px;
+}
+
+
 .all-articles-page {
     list-style-type: none;
     margin-left: 2rem;
     margin-right: 2rem;
+    background-color: rgba(0, 0, 0, 0.774);
 }
 
 .article-card-wrapper {
-    background-color: rgb(234, 0, 255);
+    background-color: rgba(0, 0, 0, 0.774);
     border-style: solid;
-    padding: 10px;
+    border-width: 10px;
+    border-color: yellow;
     margin-right: 50px;
     width: auto;
+    transition: 0.1s;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.article-card-wrapper:hover {
+    background-color: rgb(0, 0, 0);
+    border-color: orangered;
 }
 
 .article-card-image-and-title {
     background-color:salmon;
     display: flex;
+    text-decoration: none;
 }
 
 .article-card-image {
@@ -38,19 +199,27 @@ html {
     max-width: 100px;
 }
 .article-card-title {
+    font-family: crashFont;
+    font-size: 32pt;
+    font-weight: 1;
     color: black;
+    margin: auto;
+    text-decoration: none;
 }
 
 .article-card-information {
     background-color: rgb(0, 255, 221);
     display: flex;
+    text-decoration: none;
 }
 
 .article-card-subheading {
     padding: 10px;
+    text-decoration: none;
 }
 .article-card-votes-comments-counts {
     padding: 10px;
+    text-decoration: none;
 }
 
 .single-article-page {
@@ -121,4 +290,32 @@ html {
 
 .post-comment-submit-button {
     padding: 8px;
+}
+
+.loading-spinner-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.loading-spinner-image {
+    max-width: 50px;
+    max-height: 50px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 40%;
+    z-index: 10;
+}
+
+.loading-spinner-text {
+    font-family: crashFont;
+    position: fixed;
+    font-size: 24pt;
+    top: 33.5%;
+    color: orangered;
+    background-color: rgba(0, 0, 0, 0.836);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

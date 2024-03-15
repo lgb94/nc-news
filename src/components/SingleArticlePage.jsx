@@ -5,6 +5,7 @@ import { getArticleById } from "../utils/GET-articles"
 import ArticleCommentsSection from "./Article-comments"
 import { dateFormatter } from "../utils/date-format-func"
 import ArticleVotes from "./Article-votes"
+import LoadingSpinner from "./loading-spinner"
 
 const SingleArticlePage = () => {
 
@@ -47,7 +48,7 @@ const SingleArticlePage = () => {
     
     if (isLoading){
         return (
-            <h2>page loading...</h2>
+            <LoadingSpinner />
         )
     }
     
