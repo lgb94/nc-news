@@ -1,23 +1,26 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom"
+import TopicsContext from "../contexts/topics-context"
+import capitalizer from "../utils/First-letter-capitalised";
 
 const NavigationBar = () => {
+
+    const {topics, setTopics} = useContext(TopicsContext)
+
     return (
         <ul className="navigation-bar">
             <Link to="/" className="navigation-item">
-                <li>HOME</li>
+                <li>Home</li>
             </Link>
             <Link to="/articles/" className="navigation-item">
-                <li>ALL ARTICLES</li>
+                <li>All Articles</li>
             </Link>
-            <Link to="/articles/cooking" className="navigation-item">
-                <li>COOKING ARTICLES</li>
-            </Link>
-            <Link to="/articles/coding" className="navigation-item">
-                <li>CODING ARTICLES</li>
-            </Link>
-            <Link to="/articles/football" className="navigation-item">
-                <li>FOOTBALL ARTICLES</li>
-            </Link>
+            {topics.map((topic) => {
+                return (<Link to={`/articles/${topic.slug}`} key={topic.slug} className="navigation-item">
+                            <li>{capitalizer(topic.slug)}</li>
+                        </Link>
+                )
+            })}
         </ul>
     );
 }

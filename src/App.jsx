@@ -10,6 +10,7 @@ import AllArticles from './components/ArticleList'
 import SingleArticlePage from './components/SingleArticlePage'
 import UsersPage from './components/UsersPage'
 import ErrorPage from './components/Error-page'
+import HomePage from './components/Homepage'
 
 function App() {
 
@@ -35,6 +36,7 @@ useEffect(() => {
       <NavigationBar />
       <Routes>
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/articles/" element={<AllArticles />}/>
         <Route path="/articles/:topic" element={<AllArticles />}/>
         <Route path="/articles/:topic/:article_id" element={<SingleArticlePage />}/>
