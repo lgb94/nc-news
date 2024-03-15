@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { dateFormatter } from "../utils/date-format-func"
 
 const ArticleCard = (props) => {
     const article = props.article
@@ -14,7 +15,7 @@ const ArticleCard = (props) => {
             <div className="article-card-information">
                 <p className="article-card-subheading">topic: {article.topic}</p>
                 <p className="article-card-subheading">author: {article.author}</p>
-                <p className="article-card-votes-comments-counts">votes: {article.votes} comments: {article.comment_count}</p>
+                <p className="article-card-votes-comments-counts">votes: {article.votes} comments: {article.comment_count} created at: {dateFormatter(article.created_at)}</p>
             </div>    
         </div>
         </>

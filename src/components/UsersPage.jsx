@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import LoggedInContext from "../contexts/Logged-In-User-Context"
 import { getAllUsers } from "../utils/GET-users"
 
@@ -7,6 +8,8 @@ const UsersPage = () => {
 
     const [currentUserList, setCurrentUserList] = useState([])
     const [loginAttempt, setLoginAttempt] = useState('')
+    const [loggedIn, setLoggedin]= useState(false)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getAllUsers().then((res) => {
@@ -22,8 +25,7 @@ const UsersPage = () => {
         currentUserList.forEach((user) => {
             if (user.username === loginAttempt){
                 setLoggedInUser(user)
-            }
-            if (user.username !== loginAttempt){
+                setLoggedin(true)
             }
         })
         setLoginAttempt('')
@@ -31,9 +33,16 @@ const UsersPage = () => {
     
     return (
         <>
+        {loggedIn ? 
+        <>
+        <h1>Hello {loggedInUser.username}!</h1>
+        <button onClick={((event) => navigate(-1))}>back to previous page</button>
+        </> 
+        :
+        <> 
+        <h1>You need to login</h1>
         <form onSubmit={handleSubmit}>
-        <h1>you need to login</h1>
-            <input 
+           <input 
             type="text"
             value={loginAttempt}
             onChange={(event) => {
@@ -42,7 +51,8 @@ const UsersPage = () => {
              />
             <button>login</button>
         </form>
-        </>
+        </>}
+    </>
     )
 }
 
