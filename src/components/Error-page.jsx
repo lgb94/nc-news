@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import errorImage from "../../assets/kermit-falling-down-stairs.png"
 
 const ErrorPage = () => {
     return (
@@ -10,7 +11,7 @@ const ErrorPage = () => {
             <button>all articles</button>
         </Link>
         </div>
-        <img className="error-image" src="../assets/kermit-falling-down-stairs.png" alt="a poorly generated image of a wonky kermit the frog falling down an impossible set of stairs" />
+        <img className="error-image" src={errorImage} alt="a poorly generated image of a wonky kermit the frog falling down an impossible set of stairs" />
         </>
 
     )
